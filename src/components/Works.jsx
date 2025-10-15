@@ -174,18 +174,32 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link }
 const Works = () => {
   return (
     <div className="relative w-full min-h-screen flex flex-col justify-center items-center overflow-hidden bg-transparent">
-      <div className="absolute inset-0 z-0">
-        <Canvas
-          shadows
-          gl={{ alpha: true, physicallyCorrectLights: true }}
-          camera={{ position: [0, 0, 30], fov: 55 }}
-          style={{ background: "transparent" }}
-        >
-          <Suspense fallback={null}>
-            <AsteroidField />
-          </Suspense>
-        </Canvas>
-      </div>
+      <div className="absolute inset-0 -z-10">
+ <div className="absolute inset-0 -z-10">
+  <Canvas
+    shadows
+    gl={{ alpha: true, physicallyCorrectLights: true }}
+    camera={{ position: [0, 0, 30], fov: 55 }}
+    style={{
+      background: "transparent",
+      width: "100%",
+      height: "100vh",          // ensures it fills even small screens
+      minHeight: "600px",        // keeps visible area for mobile
+      position: "absolute",
+      top: 0,
+      left: 0,
+    }}
+    dpr={[1, 1.5]}
+    frameloop="always"
+  >
+    <Suspense fallback={null}>
+      <AsteroidField />
+    </Suspense>
+  </Canvas>
+</div>
+
+</div>
+
 
       {/* Header */}
       <motion.div variants={textVariant()} className="text-center z-10 mb-12 mt-24 sm:mt-20">
